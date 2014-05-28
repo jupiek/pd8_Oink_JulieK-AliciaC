@@ -31,3 +31,4 @@ LOG
           Alicia: ActionCard
                   Maybe start working on Player
           *Somebody write Card class so we can start working on subclasses
+          *Think about how to call on next player, looping, interaction between players, etc. 
