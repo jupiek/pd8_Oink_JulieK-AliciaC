@@ -1,1 +1,33 @@
 LOG
+
+3/26: Wrote proposal for Monopoly Deal
+3/27: Drew out diagram of the three classes (Player, Card, Deck), and their respective subcalsses: 
+      
+      Player (void act //draw two cards and make three moves) *instance variables: AL _hand, AL of LL of _properties, BST _money)   
+          ComputerPlayer
+              A (instanceOf CP)
+              B (instanceOf CP)
+              C (instanceOf CP)
+          Me
+      Card (int getValue, String getName, boolean inField)
+          MoneyCard
+          ActionCard
+              Rent
+              IMB //it's my birthday
+              SlyDeal
+              ForcedDeal
+          PropertyCard
+              Blue
+              Yellow
+              Orange
+              Mint
+              Pink
+      Deck (void shuffle)
+         
+3/28: Refined, changed a few of the methods and instance variables, etc. (Look above)
+      Divided work for tonight:
+          Julie: PropertyCard
+                 MoneyCard
+          Alicia: ActionCard
+                  Maybe start working on Player
+          *Somebody write Card class so we can start working on subclasses
