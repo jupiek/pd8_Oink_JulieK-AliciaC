@@ -33,3 +33,12 @@ LOG
           *Somebody write Card class so we can start working on subclasses
           *Think about how to call on next player, looping, interaction between players, etc. 
 3/28 Alicia 1AM: put down draw2 and checkHand methods for player. Created Card and YellowPropertyCard classes and put in basic variables and return methods.
+3/29 TO DO:
+      PHASE 1: Create all the cards & place in deck randomly (stack)
+      PHASE 2: Create Player methods for a turn
+      PHASE 3; Make the game playable for 4 players
+      PHASE 4: Create the computer players and make single player list
+      
+      (PHASE1 and PHASE2 can be done simultanetously)
+      
+      
