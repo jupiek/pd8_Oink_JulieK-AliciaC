@@ -19,4 +19,16 @@ public class Yellow extends Property {
 	    return rent3;
     }
 
+ 
+     public static void main( String[] args ) {
+    	
+    	Yellow Aleeshicles = new Yellow();
+    	System.out.println( Aleeshicles.getValue() );
+    	System.out.println( Aleeshicles.getName() );
+    	System.out.println( Aleeshicles.inField() );
+    	System.out.println( Aleeshicles.getType() );
+    	System.out.println( Aleeshicles.getDescription() );
+    	
+    }
+    
 }
