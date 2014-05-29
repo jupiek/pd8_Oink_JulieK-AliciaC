@@ -1,8 +1,10 @@
-public class YellowPropertyCard{
+public class Yellow extends Card {
 	
-    public YellowPropertyCard() {
+    public Yellow( String s ) {
 	value = 3;
-	name =//not sure how to do naming;
-	    inField = false;
-}
+	name = s;
+	inField = false;
+	type = "Property";
+    }
+
 }
