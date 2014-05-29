@@ -32,3 +32,4 @@ LOG
                   Maybe start working on Player
           *Somebody write Card class so we can start working on subclasses
           *Think about how to call on next player, looping, interaction between players, etc. 
+3/28 Alicia 1AM: put down draw2 and checkHand methods for player. Created Card and YellowPropertyCard classes and put in basic variables and return methods.
