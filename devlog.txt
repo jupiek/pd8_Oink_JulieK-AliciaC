@@ -40,5 +40,6 @@ LOG
       PHASE 4: Create the computer players and make single player list
       
       (PHASE1 and PHASE2 can be done simultanetously)
+      We are currently on PHASE1 and PHASE2
       
       
