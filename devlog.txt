@@ -44,7 +44,7 @@ LOG
       We are currently on PHASE1 and PHASE2
       
       Julie: Added methods to Card Class, methods and attributes to PropertyCard Class
-             Created all of the color classes under property
-      Alicia: Edited Player Class
+             Created all of the color classes under property, wrote some main methods
+      Alicia: Edited Player Class: added display method, added description attribute to property and money cards.
       
       
