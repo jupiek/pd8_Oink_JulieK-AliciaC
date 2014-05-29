@@ -11,5 +11,5 @@ public class PropertyCard extends Card {
     public String getDescription() {
 	return "Rent for 1: " + rent1 + "\n" + "Rent for 2: " + rent2 + "\n" + "Rent for 3: " + rent3;
     }
- 
+    
 }
