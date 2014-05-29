@@ -18,5 +18,13 @@ public class Card {
     public String getName() {
 	return name;
     }
+
+    public boolean inField() {
+	return inField;
+    }
+
+    public String getType() {
+	return type;
+    }
     
 }
