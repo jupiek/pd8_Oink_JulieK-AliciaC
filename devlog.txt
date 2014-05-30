@@ -20,7 +20,7 @@ LOG
               Blue
               Yellow
               Orange
-              Mint
+              Green
               Pink
       Deck (void shuffle)
          
