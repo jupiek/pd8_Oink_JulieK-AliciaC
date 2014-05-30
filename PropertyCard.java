@@ -39,7 +39,15 @@ public class PropertyCard extends Card {
    		value = 3;
    	}
     }
-
+	
+		 public int getRent( int n ) {
+	 	if (n == 1)
+	 	    return rent1;
+	 	if (n == 2) 
+		    return rent2;
+		else
+	 	    return rent3;
+   }
     public String getDescription() {
 	return "Description for Property " + name + ": " + Rent for 1: " + rent1 + "\n" + "Rent for 2: " + rent2 + "\n" + "Rent for 3: " + rent3;
     }
