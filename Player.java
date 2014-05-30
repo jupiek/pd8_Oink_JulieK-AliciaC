@@ -26,6 +26,13 @@ public class Player{
 	return retStr;
     }
     
+    public boolean searchColor(ArrayList properties){//checks if this color property is in _propery
+	if (
+	    }
+    }
+    public void place(ArrayList properties, PropertyCard c){ // place new property card in correct place in _properties
+	if (c instanceof Yellow && searchColor(properties, "Yellow" )){
+	    
 
 
     public void draw2(){
@@ -51,4 +58,20 @@ public class Player{
 	}
     }
     
+    public void useActionCard(ActionCard x, Player p){
+	if (x.getName().equals("Sly Deal")){
+	    this.useSlyDeal( p);
+	}
+	//else if all the other action cards
+    }
+
+    /* ALL ACTION CARD METHODS */
+    public boolean useSlyDeal(Player p){
+	System.out.println("Which card would you like to steal from " + p.getName());
+	display(p._hand); //Make display properties only method
+	//scanner business Card c
+	Card stolen = p._properties.remove(c);
+	place(_properties, stolen);
+    }
+
 }
