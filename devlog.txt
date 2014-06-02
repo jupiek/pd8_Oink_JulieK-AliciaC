@@ -50,4 +50,4 @@ LOG
               Need to work on actually putting the SlyDeal card to use.
 05/30: Throw/catch in Player Class (line 51: if the input type is not an integer)
 06/01: Alicia: updated Player class. modified methods checkColor and useSlyDeal. 
-06/02: UML Diagram
+06/02: UML Diagram, Added LList BST CLList
