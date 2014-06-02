@@ -20,7 +20,7 @@ public class Player{
     public void display(ArrayList<Card> cards){
 	String retStr;
 	retStr = "";
-	for (int i = 0; i <cards.size() -1, i++){
+	for (int i = 0; i <cards.size() -1; i++){
 	    retStr+= "Card" +i;
 	    if (c.type = "Action"){
 		Card c = ArrayList.get(i);
@@ -78,7 +78,6 @@ public class Player{
 
 		System.out.println("Please enter an integer indicating which card you would like to remove");
 	    }
-
 	}
     }
     
