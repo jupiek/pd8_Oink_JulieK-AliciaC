@@ -1,6 +1,6 @@
 public class Driver {
 
-    CLList players;
+    CLList<Player> players;
     DLLNode currentPlayer;
     
 }
