@@ -20,7 +20,7 @@ LOG
               Blue
               Yellow
               Orange
-              Mint
+              Green
               Pink
       Deck (void shuffle)
          
@@ -46,5 +46,7 @@ LOG
       Julie: Added methods to Card Class, methods and attributes to PropertyCard Class
              Created all of the color classes under property, wrote some main methods
       Alicia: Edited Player Class: added display method, added description attribute to property and money cards.
-      
+3/39 Alicia: Added SlyDeal class. Created a use method for action cards in Player. 
+             Need to work on actually putting the SlyDeal card to use.
+5/30: throw/catch in Player Class (line 51: if the input type is not an integer)
       

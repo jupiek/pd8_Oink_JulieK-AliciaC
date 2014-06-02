@@ -2,6 +2,7 @@ public class Player{
     ArrayList<Card> _hand;
     ArrayList <LList> _properties;
     BST _money;
+    String name;
 
     public Player(){
 	_hand = new ArrayList<Card>();
@@ -9,6 +10,13 @@ public class Player{
 	_money = new BST;
     }	
 
+ public Player(String n){
+	_hand = new ArrayList<Card>();
+	_properties = new ArrayList<LList>();
+	_money = new BST;
+	name = n;
+    }	
+    
     public void display(ArrayList<Card> cards){
 	String retStr;
 	retStr = "";
