@@ -1,53 +1,53 @@
 LOG
 
-3/26: Wrote proposal for Monopoly Deal
-3/27: Drew out diagram of the three classes (Player, Card, Deck), and their respective subcalsses: 
+03/26: Wrote proposal for Monopoly Deal
+03/27: Drew out diagram of the three classes (Player, Card, Deck), and their respective subcalsses: 
       
-      Player (void act //draw two cards and make three moves) *instance variables: AL _hand, AL of LL of _properties, BST _money)   
-          ComputerPlayer
-              A (instanceOf CP)
-              B (instanceOf CP)
-              C (instanceOf CP)
-          Me
-      Card (int getValue, String getName, boolean inField)
-          MoneyCard
-          ActionCard
-              Rent
-              IMB //it's my birthday
-              SlyDeal
-              ForcedDeal
-          PropertyCard
-              Blue
-              Yellow
-              Orange
-              Green
-              Pink
-      Deck (void shuffle)
+       Player (void act //draw two cards and make three moves) *instance variables: AL _hand, AL of LL of _properties, BST _money)   
+           ComputerPlayer
+               A (instanceOf CP)
+               B (instanceOf CP)
+               C (instanceOf CP)
+           Me
+       Card (int getValue, String getName, boolean inField)
+           MoneyCard
+           ActionCard
+               Rent
+               IMB //it's my birthday
+               SlyDeal
+               ForcedDeal
+           PropertyCard
+               Blue
+               Yellow
+               Orange
+               Green
+               Pink
+       Deck (void shuffle)
          
-3/28: Refined, changed a few of the methods and instance variables, etc. (Look above)
-      Divided work for tonight:
-          Julie: PropertyCard
-                 MoneyCard
-          Alicia: ActionCard
-                  Maybe start working on Player
-          *Somebody write Card class so we can start working on subclasses
-          *Think about how to call on next player, looping, interaction between players, etc. 
-3/28: Alicia: Put down draw2 and checkHand methods for player. 
-              Created Card and YellowPropertyCard classes and put in basic variables and return methods.
-3/29: TO DO:
-      PHASE 1: Create all the cards & place in deck randomly (stack)
-      PHASE 2: Create Player methods for a turn
-      PHASE 3; Make the game playable for 4 players
-      PHASE 4: Create the computer players and make single player list
-      
-      (PHASE1 and PHASE2 can be done simultanetously)
-      We are currently on PHASE1 and PHASE2
-      
-      Julie: Added methods to Card Class, methods and attributes to PropertyCard Class
-             Created all of the color classes under property, wrote some main methods
-      Alicia: Edited Player Class: added display method, added description attribute to property and money cards.
-3/39: Alicia: Added SlyDeal class. Created a use method for action cards in Player. 
-             Need to work on actually putting the SlyDeal card to use.
-5/30: throw/catch in Player Class (line 51: if the input type is not an integer)
-6/1: Alicia: updated Player class. modified methods checkColor and useSlyDeal. 
-6/2: Alicia: got rid of SlyDeal class and incorporated name into ActionCard class instead.
+03/28: Refined, changed a few of the methods and instance variables, etc. (Look above)
+       Divided work for tonight:
+           Julie: PropertyCard
+                  MoneyCard
+           Alicia: ActionCard
+                   Maybe start working on Player
+           *Somebody write Card class so we can start working on subclasses
+           *Think about how to call on next player, looping, interaction between players, etc. 
+03/28: Alicia: Put down draw2 and checkHand methods for player. 
+               Created Card and YellowPropertyCard classes and put in basic variables and return methods.
+03/29: TO DO:
+       PHASE 1: Create all the cards & place in deck randomly (stack)
+       PHASE 2: Create Player methods for a turn
+       PHASE 3: Make the game playable for 4 players
+       PHASE 4: Create the computer players and make single player list
+       
+       (PHASE1 and PHASE2 can be done simultanetously)
+       We are currently on PHASE1 and PHASE2
+       
+       Julie: Added methods to Card Class, methods and attributes to PropertyCard Class
+              Created all of the color classes under property, wrote some main methods
+       Alicia: Edited Player Class: added display method, added description attribute to property and money cards.
+05/29: Alicia Added SlyDeal class. Created a use method for action cards in Player. 
+              Need to work on actually putting the SlyDeal card to use.
+05/30: Throw/catch in Player Class (line 51: if the input type is not an integer)
+06/01: Alicia: updated Player class. modified methods checkColor and useSlyDeal. 
+06/02: UML Diagram
