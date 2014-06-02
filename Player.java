@@ -10,7 +10,7 @@ public class Player{
 	_money = new BST;
     }	
 
- public Player(String n){
+    public Player(String n){
 	_hand = new ArrayList<Card>();
 	_properties = new ArrayList<LList>();
 	_money = new BST;
@@ -34,14 +34,28 @@ public class Player{
 	return retStr;
     }
     
-    public boolean searchColor(ArrayList properties){//checks if this color property is in _propery
-	if (
+    public int  searchColor(String color){
+	//returns where in _properties this color property is if not in then will return -1
+	for (int i; i< _properties.size(); i++){
+	    if (_properties.get(i).getColor().equals(color)){
+		return i;
 	    }
+	}
+	return -1;
     }
-    public void place(ArrayList properties, PropertyCard c){ // place new property card in correct place in _properties
-	if (c instanceof Yellow && searchColor(properties, "Yellow" )){
-	    
 
+    public void placeInProperties(PropertyCard c){ // place new property card in correct place in _properties
+        String color = c.getColor();
+	if (searchColor(color) ==-1){ //if card's color is not already in _properties then add to the end
+	    _properties.add(c);
+	}
+	else{ //if card's color already has a linked list in _properties
+	    int index = searchColor(color);
+	    _properties.get(index).add(c);
+	}
+	System.out.println(c.getName() + " was successfully added onto the board.");
+    }
+	    
 
     public void draw2(){
 	_hand.add(deck.pop());
@@ -76,10 +90,10 @@ public class Player{
     /* ALL ACTION CARD METHODS */
     public boolean useSlyDeal(Player p){
 	System.out.println("Which card would you like to steal from " + p.getName());
-	display(p._hand); //Make display properties only method
+	display(p._properties); 
 	//scanner business Card c
 	Card stolen = p._properties.remove(c);
-	place(_properties, stolen);
+	place(stolen);
     }
 
 }
