@@ -68,15 +68,17 @@ public class Player{
 	    System.out.println("Too many cards in hand. Please select a card to discard.");
 	    display(_hand);
 	    Scanner sc = new Scanner(System.in);
-	    String choice = sc.nextLine();
-	    while  //choice is not an int use throw catch
-		{
-		    System.out.println("Please enter an integer indicating which card you would like to remove");
-		    Scanner sc = new Scanner(System.in);
-		    String choice = sc.nextLine();
-		}
-	    _hand.remove((int)choice);
-	    total = _hand.size();
+	    
+	    try {
+		String choice = sc.nextLine();	 
+		_hand.remove((int)choice);
+		total = _hand.size();
+	    }
+	    catch (ClassCastException ex){
+
+		System.out.println("Please enter an integer indicating which card you would like to remove");
+	    }
+
 	}
     }
     
