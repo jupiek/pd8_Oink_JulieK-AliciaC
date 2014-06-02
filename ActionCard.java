@@ -19,7 +19,7 @@ public class ActionCard extends Card {
     
 
     public String  getDescription() {
-	if( name = "Sly Deal") {
+	if( name .equals("Sly Deal")) {
 	    return "Steal a property from the player of your choice (cannot be part of a full set)";
 	}
 

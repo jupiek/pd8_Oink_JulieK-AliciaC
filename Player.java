@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player{
     ArrayList<Card> _hand;
     ArrayList <LList> _properties;
@@ -7,13 +9,13 @@ public class Player{
     public Player(){
 	_hand = new ArrayList<Card>();
 	_properties = new ArrayList<LList>();
-	_money = new BST;
+	_money = new BST();
     }	
 
     public Player(String n){
 	_hand = new ArrayList<Card>();
 	_properties = new ArrayList<LList>();
-	_money = new BST;
+	_money = new BST();
 	name = n;
     }	
     
