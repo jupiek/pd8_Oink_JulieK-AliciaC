@@ -6,6 +6,7 @@ public class PropertyCard extends Card {
     String color;
     
     public Property( String s, String c ) {
+    	type = "Property"
    	name = s;
    	color = c;
    	if (color == "Blue") {
