@@ -11,7 +11,7 @@ public class PropertyCard extends Card {
    	if (color == "Blue") {
 	    rent1 = 3;
 	    rent2 = 5;
-	    rent3 - 8;
+	    rent3 = 8;
 	    value = 4;
    	}
    	else if (color == "Yellow") {

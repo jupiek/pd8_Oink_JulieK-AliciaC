@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
 
 public class Player{
     ArrayList<Card> _hand;
@@ -24,15 +25,10 @@ public class Player{
 	retStr = "";
 	for (int i = 0; i <cards.size() -1; i++){
 	    retStr+= "Card" +i;
-	    if (c.type = "Action"){
-		Card c = ArrayList.get(i);
-		retStr += "["+  c.getType()+ ":" + c.getName() + "\n" + "]" + "\n";
-	    }
-	    else{
-		Card c = ArrayList.get(i);
-		retStr += "["+  c.getType()+ ":"  + c.getName() +"\n" +c.getDescription() + "\n" + "]" + "\n"+"\n";
-	    }
+	    Card c = ArrayList.get(i);
+	    retStr += "["+  c.getType()+ ":"  + c.getName() +"\n" +c.getDescription() + "\n" + "]" + "\n"+"\n";
 	}
+    
 	return retStr;
     }
     
@@ -65,12 +61,11 @@ public class Player{
     }
 
     public void checkHand(){
-	total = _hand.size();
+	int total = _hand.size();
 	while (total> 7) {
 	    System.out.println("Too many cards in hand. Please select a card to discard.");
 	    display(_hand);
 	    Scanner sc = new Scanner(System.in);
-	    
 	    try {
 		String choice = sc.nextLine();	 
 		_hand.remove((int)choice);
@@ -93,10 +88,20 @@ public class Player{
     /* ALL ACTION CARD METHODS */
     public boolean useSlyDeal(Player p){
 	System.out.println("Which card would you like to steal from " + p.getName());
-	display(p._properties); 
-	//scanner business Card c
-	Card stolen = p._properties.remove(c);
-	place(stolen);
-    }
+	boolean stolenYet = false;
+	while (!stolenYet){ 
+	    display(p._properties);
+	    Scanner sc = new Scanner(System.in);
+	    try {
+		String choice = sc.nextLine();	 
+	        Card stolen =  p._properties.remove((int)choice);
+	        stolenYet=true;
+	    }
+	    catch (ClassCastException ex){
+		System.out.println("Please enter an integer indicating which card you would like to steal");
+	    }
+	    placeInProperties(stolen);
+	}
 
+    }
 }
