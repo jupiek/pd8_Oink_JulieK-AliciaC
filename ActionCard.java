@@ -1,10 +1,8 @@
 public class ActionCard extends Card {
-
-    String description; 
     
     public ActionCard(String n) {
 	type = "Action";
-	inField = "false";
+	inField = false;
 	name = n;
 	if (n.equals ("Sly Deal")){
       	    value = 3;

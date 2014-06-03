@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Player{
     ArrayList<Card> _hand;
-    ArrayList <LList> _properties;
+    ArrayList<LList> _properties;
     BST _money;
     String name;
 
@@ -25,7 +25,7 @@ public class Player{
 	retStr = "";
 	for (int i = 0; i <cards.size() -1; i++){
 	    retStr+= "Card" +i;
-	    Card c = ArrayList.get(i);
+	    Card c = cards.get(i);
 	    retStr += "["+  c.getType()+ ":"  + c.getName() +"\n" +c.getDescription() + "\n" + "]" + "\n"+"\n";
 	}
     
@@ -55,7 +55,7 @@ public class Player{
     }
 	    
 
-    public void draw2(){
+    public void draw2(RQueue deck){
 	_hand.add(deck.pop());
 	_hand.add(deck.pop());
     }
@@ -95,13 +95,13 @@ public class Player{
 	    try {
 		String choice = sc.nextLine();	 
 	        Card stolen =  p._properties.remove((int)choice);
-	        stolenYet=true;
+
 	    }
 	    catch (ClassCastException ex){
 		System.out.println("Please enter an integer indicating which card you would like to steal");
 	    }
+	}
 	    placeInProperties(stolen);
 	}
 
     }
-}

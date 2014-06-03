@@ -1,6 +1,6 @@
 /*****************************************************
  * class DLLNode
- * Implements a doubly-linked node, for use in linear container classes.
+ * Implements a node, for use in lists and other container classes.
  *****************************************************/
 
 public class DLLNode<T> {
@@ -18,7 +18,7 @@ public class DLLNode<T> {
 
 
     //--------------v  ACCESSORS  v--------------
-    public T getValue() { return _cargo; }
+    public T getCargo() { return _cargo; }
 
     public DLLNode<T> getNext() { return _nextNode; }
 
@@ -27,9 +27,9 @@ public class DLLNode<T> {
 
 
     //--------------v  MUTATORS  v--------------
-    public T setValue( T newVal ) {
-	T foo = getValue();
-	_cargo = newVal;
+    public T setCargo( T newCargo ) {
+	T foo = getCargo();
+	_cargo = newCargo;
 	return foo;
     }
 
@@ -47,9 +47,31 @@ public class DLLNode<T> {
     //--------------^  MUTATORS  ^--------------
 
 
-
     // override inherited toString
     public String toString() { return _cargo.toString(); }
 
+
+    //main method for testing
+    public static void main( String[] args ) {
+
+	//Below is an exercise in creating a linked list...
+
+	/*********************
+	//Create a node
+	DLLNode<String> first = new DLLNode<String>( "cat", null );
+
+	//Create a new node after the first
+	first.setNext( new DLLNode<String>( "dog", null ) );
+
+	//Create a third node after the second
+	first.getNext().setNext( new DLLNode<String>( "cow", null ) );
+
+	DLLNode temp = first; 
+	while( temp != null ) {
+	    System.out.println( temp );
+	    temp = temp.getNext();
+	}
+	***********************/
+    }//end main
 
 }//end class DLLNode

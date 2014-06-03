@@ -5,8 +5,8 @@ public class PropertyCard extends Card {
     int rent3;
     String color;
     
-    public Property( String s, String c ) {
-    	type = "Property"
+    public PropertyCard( String s, String c ) {
+    	type = "Property";
    	name = s;
    	color = c;
    	if (color == "Blue") {
