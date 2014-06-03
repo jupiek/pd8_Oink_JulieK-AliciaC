@@ -52,3 +52,4 @@ LOG
 06/01: Alicia: updated Player class. modified methods checkColor and useSlyDeal. 
 06/02: UML Diagram, Added LList BST CLList, Debugged Player class but not completely ):, deleted SlyDeal class and modified ActionCard class 
 06/02: Alicia: added getType to Card class, added money constructor to card class, made PropertyCard class simpler, fixed some bugs we are down to 27 now...
+06/03: Debugged, down to 20!!! Added RQueue and LLNode classes, add getDescription() to card class, added to UML diagram
