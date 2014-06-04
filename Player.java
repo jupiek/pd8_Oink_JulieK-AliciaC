@@ -9,7 +9,10 @@ public class Player{
 
     public Player(){
 	_hand = new ArrayList<Card>();
-	_properties = new ArrayList<LList>();
+	_properties = new ArrayList<LList>(5);
+	for (int i = 0; i <= 5; i ++) {	
+		_properties.add( new LList<PropertyCard> );		
+	}
 	_money = new BST();
     }	
 
