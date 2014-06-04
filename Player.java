@@ -24,15 +24,20 @@ public class Player{
     }	
     
     public void display( ArrayList<Card> cards ) {
-	String retStr;
-	retStr = "";
-	for (int i = 0; i <cards.size() -1; i++){
-	    retStr+= "Card" +i;
+	for (int i = 0; i < cards.size(); i++) {
+	    String retStr = "";
+	    retStr+= "Card " + i + ": ";
 	    Card c = cards.get(i);
-	    retStr += "["+  c.getType()+ ":"  + c.getName() +"\n" +c.getDescription() + "\n" + "]" + "\n"+"\n";
-	}
+	    retStr += "[TYPE: " +  c.getType()+ "NAME: " + c.getName() + "DESCRIPTION: " + c.getDescription() + "]";
+	    System.out.println( retStr );
+        }			
+    }
     
-	return retStr;
+    public void display( LList<PropertyCard> cards ) {
+    	for (int i = 0; i < LList.size()) {
+    		String retStr = "";
+    		//FINISH AT HOME!!!! DISPLAY ALL OF THE PROPERTY CARDS OF ONE COLOR TOGETHER
+    	}
     }
     
     
@@ -90,10 +95,10 @@ public class Player{
     }
 
     /* ALL ACTION CARD METHODS */
-    public boolean useSlyDeal(Player p){
-	System.out.println("Which card would you like to steal from " + p.getName());
+    public boolean useSlyDeal( Player p ) {
+	System.out.println("Which card would you like to steal from, " + p.getName()); + "?"'
 	boolean stolenYet = false;
-	while (!stolenYet){ 
+	while (! stolenYet) { 
 	    display(p._properties);
 	    Scanner sc = new Scanner(System.in);
 	    try {
