@@ -56,4 +56,5 @@ LOG
 06/04: Cleaned up code, changed the placeInProperties method in Player. The ArrayList of LList of property cards will now have 5 empty slots from the start, so that all of the colors in everyone's hands are in the same order and easier to access (index 0 is Blue, index 1 is Yellow, etc.)
        Deciphering whether or not to change the Rent in ActionCard so that Rent cards get a color attribute that returns an ArrayList of the colors that this specific Rent card calls for. 
        **ASK ALICIA are we not writing a MoneyCard clasS? Just keeping Card as MoneyCard, and overriding for Action and Property Card classes?
+       Added an additional display method that takes an LList, so that we can display both the cards in the hand and the property cards in the LList's...
        
