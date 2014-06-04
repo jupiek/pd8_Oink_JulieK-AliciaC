@@ -13,7 +13,7 @@ public class Card {
 	description = "";
     }
     
-    public Card(int val){ //constructor for money cards
+    public Card( int val ) { //constructor for  MoneyCard, this will get overridden in ActionCard and PropertyCard
 	value = val;
 	name = "$" + val + "M";
 	inField = false;
