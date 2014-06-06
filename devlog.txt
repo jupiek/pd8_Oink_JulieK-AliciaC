@@ -57,4 +57,5 @@ LOG
        Deciphering whether or not to change the Rent in ActionCard so that Rent cards get a color attribute that returns an ArrayList of the colors that this specific Rent card calls for. 
        **ASK ALICIA are we not writing a MoneyCard clasS? Just keeping Card as MoneyCard, and overriding for Action and Property Card classes?
        Added an additional display method that takes an LList, so that we can display both the cards in the hand and the property cards in the LList's...
-       
+06/06: Alicia: fixed placeInProperties method in Player so that we can have more than 5 colors of properties, no more preassigned slots
+       Also changed display methods so that we now have a display(ArrayList<Card> cards) and a displayProperties method.
