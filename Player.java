@@ -9,10 +9,9 @@ public class Player{
 
     public Player(){
 	_hand = new ArrayList<Card>();
-	_properties = new ArrayList<LList>(5);
-	for (int i = 0; i <= 5; i ++) {	
-		_properties.add( new LList<PropertyCard> );		
-	}
+	LList<PropertyCard> temp = new LList<PropertyCard>();
+	_properties = new ArrayList<LList>();
+	_properties.add(temp);
 	_money = new BST();
     }	
 
@@ -23,7 +22,7 @@ public class Player{
 	name = n;
     }	
     
-    public void display( ArrayList<Card> cards ) {
+    public void display( ArrayList<Card> cards ) { //display method for not _properties ArrayLists
 	for (int i = 0; i < cards.size(); i++) {
 	    String retStr = "";
 	    retStr+= "Card " + i + ": ";
@@ -33,16 +32,34 @@ public class Player{
         }			
     }
     
-    public void display( LList<PropertyCard> cards ) {
-    	for (int i = 0; i < LList.size()) {
-    		String retStr = "";
-    		//FINISH AT HOME!!!! DISPLAY ALL OF THE PROPERTY CARDS OF ONE COLOR TOGETHER
-    	}
+    public void displayPropertyCards() {
+    	for (int i = 0; i < _properties.size(); i++) {
+	    String retStr = "Property Set " + i +":";
+	    for (int j = 0; j<_properties.get(i).size(); j++){
+		Card c =  _properties.get(i).get(j);
+		retStr += "NAME:" + c.getName() +"\n" + c.getDescription();
+	    }
+	    System.out.println(retStr);
+	}
     }
     
     
     public void placeInProperties( PropertyCard c ) { // place new property card in correct place in _properties
-        String color = c.getColor();
+	boolean alreadyHasColor = false;
+	for (int i =0; i< _properties.size()&&!alreadyHasColor; i++){
+	    return _properties.get(i).get(0);
+	    String color = _properties.get(i).get(0).getColor();
+	    if (c.getColor().equals(color)){  //if color or property already exists in the AL
+		_properties.get(i).add(c);
+		alreadyHasColor = true;
+	    }
+	}
+	if (!alreadyHasColor){
+	    LList addition = new LList<PropertyCard>();
+	    addition.add(c);
+	    _properties.add(addition);
+	}	
+	    /*    String color = c.getColor();
         if (color == "Blue")
         	_properties.get(0).add(c);
         if (color == "Yellow")
@@ -53,7 +70,7 @@ public class Player{
         	_properties.get(3).add(c);
         if (color == "Pink")
         	_properties.get(4).add(c);
-	System.out.println( c.getName() + " was successfully added onto the board." );
+		System.out.println( c.getName() + " was successfully added onto the board." );*/
     }
 	    
 
@@ -96,10 +113,10 @@ public class Player{
 
     /* ALL ACTION CARD METHODS */
     public boolean useSlyDeal( Player p ) {
-	System.out.println("Which card would you like to steal from, " + p.getName()); + "?"'
+	System.out.println("Which card would you like to steal from " + p.name + "?");
 	boolean stolenYet = false;
 	while (! stolenYet) { 
-	    display(p._properties);
+	    p.displayPropertyCards();
 	    Scanner sc = new Scanner(System.in);
 	    try {
 		String choice = sc.nextLine();	 
