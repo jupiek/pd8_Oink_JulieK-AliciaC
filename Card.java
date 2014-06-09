@@ -42,7 +42,6 @@ public class Card {
     	Card Aleeshicles = new Card();
     	System.out.println( Aleeshicles.getValue() );
     	System.out.println( Aleeshicles.getName() );
-    	System.out.println( Aleeshicles.inField() );
     	System.out.println( Aleeshicles.getType() );
     	
     }

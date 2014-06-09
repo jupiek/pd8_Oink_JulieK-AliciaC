@@ -17,8 +17,9 @@ public class Player{
 
     public Player( String n ) {
 	_hand = new ArrayList<Card>();
+	LList<PropertyCard> temp = new LList<PropertyCard>();
 	_properties = new ArrayList<LList>();
-	_money = new BST();
+	_properties.add(temp);
 	name = n;
     }	
     
@@ -36,7 +37,7 @@ public class Player{
     	for (int i = 0; i < _properties.size(); i++) {
 	    String retStr = "Property Set " + i +":";
 	    for (int j = 0; j<_properties.get(i).size(); j++){
-		Card c =  _properties.get(i).get(j);
+		Card c = (Card)_properties.get(i).get(j);
 		retStr += "NAME:" + c.getName() +"\n" + c.getDescription();
 	    }
 	    System.out.println(retStr);
@@ -47,8 +48,8 @@ public class Player{
     public void placeInProperties( PropertyCard c ) { // place new property card in correct place in _properties
 	boolean alreadyHasColor = false;
 	for (int i =0; i< _properties.size()&&!alreadyHasColor; i++){
-	    return _properties.get(i).get(0);
-	    String color = _properties.get(i).get(0).getColor();
+	    PropertyCard temp = (PropertyCard)_properties.get(i).get(0);
+	    String color = temp.getColor();
 	    if (c.getColor().equals(color)){  //if color or property already exists in the AL
 		_properties.get(i).add(c);
 		alreadyHasColor = true;
@@ -75,8 +76,8 @@ public class Player{
 	    
 
     public void draw2( RQueue deck ) {
-	_hand.add(deck.pop());
-	_hand.add(deck.pop());
+	_hand.add((Card)deck.dequeue());
+	_hand.add((Card)deck.dequeue());
     }
 
 
@@ -88,7 +89,7 @@ public class Player{
 	    Scanner sc = new Scanner(System.in);
 	    try {
 		String choice = sc.nextLine();	 
-		_hand.remove((int)choice);
+		_hand.remove(Integer.parseInt(choice));
 		total = _hand.size();
 	    }
 	    catch (ClassCastException ex){
@@ -101,33 +102,38 @@ public class Player{
     public void useActionCard( ActionCard x, Player p ) {
 	if (x.getName().equals("Sly Deal"))
 	    this.useSlyDeal(p);
-	if (x.getName().equals("Forced Deal"))
-	    this.useForcedDeal(p);
-	if (x.getName().equals("It's My Birthday!"))
-            this.useIBM(p);
-        if (x.getName().equals("Rent")) {
-        	x.getColor();
-        	//etc.
-        }
+	/*
+	  if (x.getName().equals("Forced Deal"))
+	  this.useForcedDeal(p);
+	  if (x.getName().equals("It's My Birthday!"))
+	  this.useIBM(p);
+	  if (x.getName().equals("Rent")) {
+	  x.getColor();
+	  //etc. */
     }
+    
 
     /* ALL ACTION CARD METHODS */
     public boolean useSlyDeal( Player p ) {
 	System.out.println("Which card would you like to steal from " + p.name + "?");
 	boolean stolenYet = false;
+	Scanner sc = new Scanner(System.in);
 	while (! stolenYet) { 
 	    p.displayPropertyCards();
-	    Scanner sc = new Scanner(System.in);
 	    try {
 		String choice = sc.nextLine();	 
-	        Card stolen =  p._properties.remove((int)choice);
+		LList temp =  p._properties.get(Integer.parseInt(choice));
+		PropertyCard stolen = (PropertyCard)temp.removeLast();
+		stolenYet = true;
 
 	    }
 	    catch (ClassCastException ex){
 		System.out.println("Please enter an integer indicating which card you would like to steal");
 	    }
-	}
-	    placeInProperties(stolen);
-	}
 
+	}
+    
+	placeInProperties(stolen);
     }
+
+}

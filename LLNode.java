@@ -3,35 +3,35 @@
  * Implements a node, for use in lists and other container classes.
  *****************************************************/
 
-public class LLNode<T> {
+public class LLNode<Card> {
 
-    private T _cargo;    //cargo may only be of type T
-    private LLNode<T> _nextNode; //pointer to next LLNode
+    private Card _cargo;    //cargo may only be of type Card
+    private LLNode<Card> _nextNode; //pointer to next LLNode
 
 
     // constructor -- initializes instance vars
-    public LLNode( T value, LLNode<T> next ) {
+    public LLNode( Card value, LLNode<Card> next ) {
 	_cargo = value;
 	_nextNode = next;
     }
 
 
     //--------------v  ACCESSORS  v--------------
-    public T getValue() { return _cargo; }
+    public Card getValue() { return _cargo; }
 
-    public LLNode<T> getNext() { return _nextNode; }
+    public LLNode<Card> getNext() { return _nextNode; }
     //--------------^  ACCESSORS  ^--------------
 
 
-    //--------------v  MUTATORS  v--------------
-    public T setValue( T newCargo ) {
-	T foo = getValue();
+    //--------------v  MUCardACardORS  v--------------
+    public Card setValue( Card newCargo ) {
+	Card foo = getValue();
 	_cargo = newCargo;
 	return foo;
     }
 
-    public LLNode<T> setNext( LLNode<T> newNext ) {
-	LLNode<T> foo = getNext();
+    public LLNode<Card> setNext( LLNode<Card> newNext ) {
+	LLNode<Card> foo = getNext();
 	_nextNode = newNext;
 	return foo;
     }
