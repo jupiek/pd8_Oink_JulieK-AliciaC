@@ -59,3 +59,4 @@ LOG
        Added an additional display method that takes an LList, so that we can display both the cards in the hand and the property cards in the LList's...
 06/06: Alicia: fixed placeInProperties method in Player so that we can have more than 5 colors of properties, no more preassigned slots
        Also changed display methods so that we now have a display(ArrayList<Card> cards) and a displayProperties method.
+06/09: Alicia: Player.java has one error left. lots of problems solved by casting object as a Card class
