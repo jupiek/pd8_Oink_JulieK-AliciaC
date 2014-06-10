@@ -23,6 +23,54 @@ public class Player{
 	name = n;
     }	
     
+    public void turn(){
+	draw2(deck);
+	System.out.println("It is now your turn, you have drawn 2 cards.");
+	Scanner sc = new Scanner(System.in);
+	int moves = 3;
+	while (moves >0){
+	    System.out.println("Hand:");
+	    display(_hand);
+	    System.out.println("You have " + moves + "moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
+	    String choice = sc.nextLine();
+	    if (onlyNumbers(choice)){
+		Card activated = hand.remove(Integer.parseInt(choice)); //removes card
+		if (activated.getType = "Money"){
+		    _money.add(activated);
+		    moves = moves -1;
+		}
+		else if (activated.getType = "Action"){
+		    while (played ==false;){
+			System.out.println( "Which player would you like to use this action card on?"); 
+			String p = sc.nextLine();
+			if (onlyNumbers(p)){
+			    useActionCard(activated, Driver.players.find(Integer.parseInt(p)));//NEEDS FIXING
+			    played = true;
+			    moves = moves -1
+			}
+			else {
+			    System.out.println("Please enter an integer indicating which player you would like to use this card on");
+			}
+		    }
+			   
+		}
+		
+		else{ //card is property
+		    placeInProperties(activated);
+		    moves = moves -1;
+		}
+	    }
+			   
+	    else {
+		System.out.println("Please enter an integer indicating which card you would like to play");
+	    }
+	}
+    }
+
+	    
+	    
+	
+
     public void display( ArrayList<Card> cards ) { //display method for not _properties ArrayLists
 	for (int i = 0; i < cards.size(); i++) {
 	    String retStr = "";
@@ -60,18 +108,6 @@ public class Player{
 	    addition.add(c);
 	    _properties.add(addition);
 	}	
-	    /*    String color = c.getColor();
-        if (color == "Blue")
-        	_properties.get(0).add(c);
-        if (color == "Yellow")
-        	_properties.get(1).add(c);        	
-        if (color == "Orange")
-        	_properties.get(2).add(c);
-        if (color == "Green")
-        	_properties.get(3).add(c);
-        if (color == "Pink")
-        	_properties.get(4).add(c);
-		System.out.println( c.getName() + " was successfully added onto the board." );*/
     }
 	    
 
@@ -115,25 +151,35 @@ public class Player{
 
     /* ALL ACTION CARD METHODS */
     public boolean useSlyDeal( Player p ) {
-	System.out.println("Which card would you like to steal from " + p.name + "?");
 	boolean stolenYet = false;
 	Scanner sc = new Scanner(System.in);
 	while (! stolenYet) { 
+	    System.out.println("Which card would you like to steal from " + p.name + "?");
 	    p.displayPropertyCards();
-	    try {
-		String choice = sc.nextLine();	 
+	    String choice = sc.nextLine();
+	    if (onlyNumbers(choice)){
 		LList temp =  p._properties.get(Integer.parseInt(choice));
 		PropertyCard stolen = (PropertyCard)temp.removeLast();
 		stolenYet = true;
-
 	    }
-	    catch (ClassCastException ex){
+	    else {
 		System.out.println("Please enter an integer indicating which card you would like to steal");
+		stolenYet = false;
 	    }
 
 	}
-    
 	placeInProperties(stolen);
     }
 
+    public boolean onlyNumbers(String str) {
+        if (str == null || str.length() == 0)
+            return false;
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i)))
+                return false;
+        }   
+        return true;
+    }
+	}
+    }
 }
