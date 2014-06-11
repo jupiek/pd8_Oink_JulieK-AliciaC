@@ -23,7 +23,7 @@ public class Player{
 	name = n;
     }	
     
-    public void turn(){
+    public void turn(CLList players, RQueue deck){
 	draw2(deck);
 	System.out.println("It is now your turn, you have drawn 2 cards.");
 	Scanner sc = new Scanner(System.in);
@@ -33,20 +33,28 @@ public class Player{
 	    display(_hand);
 	    System.out.println("You have " + moves + "moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
 	    String choice = sc.nextLine();
-	    if (onlyNumbers(choice)){
-		Card activated = hand.remove(Integer.parseInt(choice)); //removes card
-		if (activated.getType = "Money"){
+	    if (choice.equals ("pass")){
+		System.out.println("Next Player's Turn");
+		players._head = players._head.getNext();
+		moves = 0;
+		Player temp = (Player)players._head.getCargo();
+		temp.turn();
+	    }
+	    else  if (onlyNumbers(choice)){
+		Card activated = _hand.remove(Integer.parseInt(choice)); //removes card
+		if (activated.getType() = "Money"){
 		    _money.add(activated);
 		    moves = moves -1;
 		}
 		else if (activated.getType = "Action"){
-		    while (played ==false;){
+		   boolean  played = false;
+		    while (played ==false){
 			System.out.println( "Which player would you like to use this action card on?"); 
 			String p = sc.nextLine();
 			if (onlyNumbers(p)){
-			    useActionCard(activated, Driver.players.find(Integer.parseInt(p)));//NEEDS FIXING
+			    useActionCard(activated, players.find(Integer.parseInt(p)));//NEEDS FIXING
 			    played = true;
-			    moves = moves -1
+			    moves = moves -1;
 			}
 			else {
 			    System.out.println("Please enter an integer indicating which player you would like to use this card on");
@@ -60,7 +68,8 @@ public class Player{
 		    moves = moves -1;
 		}
 	    }
-			   
+	 
+		
 	    else {
 		System.out.println("Please enter an integer indicating which card you would like to play");
 	    }
@@ -180,6 +189,6 @@ public class Player{
         }   
         return true;
     }
-	}
-    }
 }
+    
+

@@ -26,6 +26,14 @@ public class Driver {
     deck.sample();
 
     CLList<Player> players = new CLList<Player>();
-
+    new Player P1 = new Player();
+    new Player P2 = new Player();
+    new Player P3 = new Player();
+    new Player P4 = new Player();
+    players.add(P1);
+    players.add(P2);
+    players.add(P3);
+    players.add(P4);
+    P1.turn(players, deck);
     
 }
