@@ -9,7 +9,7 @@ public class PropertyCard extends Card {
     	type = "Property";
    	name = s;
    	color = c;
-   	if (color == "Blue") {
+   	if (color == "Red") {
 	    rent1 = 3;
 	    rent2 = 5;
 	    rent3 = 8;
