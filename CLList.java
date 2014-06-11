@@ -7,7 +7,7 @@ public class CLList<T> {
 
     // only 1 head/tail/front/end pointer is necessary,
     // since the list is circularly-linked
-    private DLLNode<T> _head;
+    public DLLNode<T> _head;
     private int _size = 0;
 
     public CLList() {
