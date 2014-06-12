@@ -137,24 +137,73 @@ public class Player{
 		_hand.remove(Integer.parseInt(choice));
 		total = _hand.size();
 	    }
-	    catch (ClassCastException ex){
-
+	    catch (ClassCastException ex){	    
 		System.out.println("Please enter an integer indicating which card you would like to remove");
 	    }
 	}
     }
+
+
+    public void pay(Player p, int debt){
+	System.out.println ("This is your money pile: " + _money.preOrderTravStr()); 
+	System.out.println ("Choose the value of a card you would like to use to pay " + p.getName());
+	Scanner sc = new Scanner(System.in);
+	while (debt >0){
+	    int sum = 0;
+	    sum = _money.sum();//sum of monies
+	    if (sum => debt){//you have enough money left to pay
+		try {
+		    String choice = sc.nextLine();	 
+		    _money.remove(Integer.parseInt(choice));
+		    debt = debt - Integer.parseInt(choice);
+		    sum = _money.sum();
+		}
+		catch (ClassCastException ex){	    
+		    System.out.println("Please enter an integer indicating the value of the  card you would like to remove");
+		}
+	    }
+	    else {//you don't have enough money	
+		System.out.println("You must pay with your properties or a combination of properties and money. These are your properties: " );
+		System.out.println(displayPropertyCards());
+		System.out.println("Choose a property to pay with");
+		try { //removing a property card
+		    String choice = sc.nextLine();	 
+		    _properties.remove(Integer.parseInt(choice));
+		    debt = debt - _properties.getValue(Integer.parseInt(choice));
+		    sum = _money.sum();
+		    System.out.println("Would you like to paying using a)Property Cards or b)Money Cards");
+		    try {
+			String PorM = sc.nextLine():
+			if (PorM.equals("a")){
+			    //usea loop to redo choosing a property
+			}
+			else {
+			    //use loop to choose property
+			}
+		    }
+		}
+		catch (ClassCastException ex){	    
+		    System.out.println("Please enter an integer indicating the index of the  card you would like to remove");
+		}
+	    }
+	}
+
+
+    
     
     public void useActionCard( ActionCard x, Player p ) {
 	if (x.getName().equals("Sly Deal"))
 	    this.useSlyDeal(p);
-	/*
-	  if (x.getName().equals("Forced Deal"))
+	/*	  if (x.getName().equals("Forced Deal"))
 	  this.useForcedDeal(p);
 	  if (x.getName().equals("It's My Birthday!"))
 	  this.useIBM(p);
-	  if (x.getName().equals("Rent")) {
-	  x.getColor();
-	  //etc. */
+	*/
+	
+	else if (x.getName().equals("Rent")) {
+	  String rentcolor = x.getColor();
+	  //code to make all players pay this player.
+
     }
     
 
@@ -175,7 +224,6 @@ public class Player{
 		System.out.println("Please enter an integer indicating which card you would like to steal");
 		stolenYet = false;
 	    }
-
 	}
 	placeInProperties(stolen);
     }
