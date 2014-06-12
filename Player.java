@@ -151,7 +151,7 @@ public class Player{
 	while (debt >0){
 	    int sum = 0;
 	    sum = _money.sum();//sum of monies
-	    if (sum => debt){//you have enough money left to pay
+	    if (sum >= debt){//you have enough money left to pay
 		try {
 		    String choice = sc.nextLine();	 
 		    _money.remove(Integer.parseInt(choice));
@@ -172,23 +172,27 @@ public class Player{
 		    debt = debt - _properties.getValue(Integer.parseInt(choice));
 		    sum = _money.sum();
 		    System.out.println("Would you like to paying using a)Property Cards or b)Money Cards");
-		    try {
-			String PorM = sc.nextLine():
-			if (PorM.equals("a")){
-			    //usea loop to redo choosing a property
-			}
-			else {
-			    //use loop to choose property
-			}
+		    
+		    String PorM = sc.nextLine();
+		    while ( !(PorM.equals("a")) || !(PorM.equals("b")) ) {
+			System.out.println("You must choose (a) Property Cards or (b) Money Cards. Please enter again.");
+			PorM = sc.nextLine();
 		    }
+		    if (PorM.equals("a")){
+			//use a loop to redo choosing a property
+		    }
+		    else {
+			//use loop to choose property
+		    }
+		    
 		}
 		catch (ClassCastException ex){	    
 		    System.out.println("Please enter an integer indicating the index of the  card you would like to remove");
 		}
 	    }
 	}
-
-
+    }
+    
     
     
     public void useActionCard( ActionCard x, Player p ) {
@@ -204,11 +208,12 @@ public class Player{
 	  String rentcolor = x.getColor();
 	  //code to make all players pay this player.
 
+	}
     }
-    
-
+	
+	
     /* ALL ACTION CARD METHODS */
-    public boolean useSlyDeal( Player p ) {
+	public boolean useSlyDeal( Player p ) {
 	boolean stolenYet = false;
 	Scanner sc = new Scanner(System.in);
 	while (! stolenYet) { 
