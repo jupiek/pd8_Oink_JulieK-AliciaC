@@ -325,33 +325,37 @@ public class BST {
     }
     //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
 	
-	public int sum(){
-		int total;
-			if ( currNode == null )
-		    return;
-		total = total + currNode.getValue() ;
+    public int sum(){
+	sum(_root);
+	    }
+
+    public int sum(TreeNode currNode){
+	int total;
+	if ( currNode == null )
+	    return;
+	total = total + currNode.getValue() ;
 	total =total + sum( currNode.getLeft() );
 	total = total + sum( currNode.getRight() );
-		return total;
-	    }	
-	}
-
-
-    //overridden toString
-    public String toString()
-    {
-	return
-	    " pre-order trav:" + preOrderTravStr( _root ) + '\n' +
-	    "  in-order trav:" + inOrderTravStr( _root ) + '\n' +
-	    "post-order trav:" + postOrderTravStr( _root ) + '\n' +
-	    "         height: " + height() + '\n' +
-	    "     num leaves: " + numLeaves() 
-	    ;
-    }
+	return total;
+    }	
 
 
 
-    //main method for testing
+//overridden toString
+public String toString()
+{
+    return
+	" pre-order trav:" + preOrderTravStr( _root ) + '\n' +
+	"  in-order trav:" + inOrderTravStr( _root ) + '\n' +
+	"post-order trav:" + postOrderTravStr( _root ) + '\n' +
+	"         height: " + height() + '\n' +
+	"     num leaves: " + numLeaves() 
+	;
+}
+
+
+
+//main method for testing
     public static void main( String[] args ) {
 
 	BST arbol = new BST();

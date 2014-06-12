@@ -23,18 +23,22 @@ public class Driver {
 	deck.enqueue( new PropertyCard("States Avenue","Pink"));
 
 
-	deck.enqueue(new ActionCard("Sly Deal"));
-	deck.enqueue(new ActionCard("Forced Deal"));
-	deck.enqueue(new ActionCard("It's my Birthday!"));
-	//  deck.enqueue(ActionCard("Rent"));
+	deck.enqueue( new ActionCard("Sly Deal"));
+	deck.enqueue( new ActionCard("Forced Deal"));
+	deck.enqueue( new ActionCard("It's my Birthday!"));
+	deck.enqueue(new RentCard("Yellow"));
+	deck.enqueue(new RentCard("Pink"));
+	deck.enqueue(new RentCard("Orange"));
+	deck.enqueue(new RentCard("Red"));
+	deck.enqueue(new RentCard("Green"));
 
-	deck.sample();
+	deck.sample(); //shuffles deck
 
 	CLList<Player> players = new CLList<Player>();
-	new Player P1 = new Player();
-	new Player P2 = new Player();
-	new Player P3 = new Player();
-	new Player P4 = new Player();
+	Player P1 = new Player("Me");
+	Player P2 = new Player("Julie");
+        Player P3 = new Player("Alicia");
+        Player P4 = new Player("Potato");
 	players.add(P1);
 	players.add(P2);
 	players.add(P3);
