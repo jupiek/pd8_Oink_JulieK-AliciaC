@@ -61,5 +61,8 @@ LOG
        Also changed display methods so that we now have a display(ArrayList<Card> cards) and a displayProperties method.
 06/09: Alicia: Player.java has one error left. lots of problems solved by casting object as a Card class
 06/10: Alicia: Added a bunch of main methods to make the deck. added turn() method to player class and instead of throw catch for checking if a response is  an int, I added a seperate method to actually check and return a boolean.
-       *Need a subcalss for rent cards since they have an extra attribute regular action cards do not have
+       *Need a subcalss for rent cards since they have an extra attribute regular action cards do not have UPDATE: Done
 06/11: Alicia: tried to get the CLList mechanism working. had to add Rqueue deck and CLList players as parameters in the turn function. 
+06/12: Alicia: added RentCard class with color attribute, added a sum method to BST, added onto getDesciption() for ActionCard class, began a pay(Player p, int debt) still needs to be complete, 
+       Updated useActionCard() in player class
+       *Still missing identifier problem in Driver class. Not sure how to fix this
