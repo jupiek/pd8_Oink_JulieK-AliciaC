@@ -6,8 +6,7 @@ public class Driver {
     public static void main( String[] args ) {
 
 	RQueue<Card> deck = new RQueue<Card>();
-	PropertyCard a = new PropertyCard("Pennsylvania Avenue", "Green");
-	deck.enqueue(a);
+	deck.enqueue( new PropertyCard("Pennsylvania Avenue", "Green"));
 	deck.enqueue( new PropertyCard("North Carolina Avenue", "Green"));
 	deck.enqueue( new PropertyCard("Pacific Avenue","Green"));
 	deck.enqueue( new PropertyCard("Atlantic Avenue" ,"Yellow"));
