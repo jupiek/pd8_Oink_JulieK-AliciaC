@@ -324,6 +324,17 @@ public class BST {
 	return retStr;
     }
     //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
+	
+	public int sum(){
+		int total;
+			if ( currNode == null )
+		    return;
+		total = total + currNode.getValue() ;
+	total =total + sum( currNode.getLeft() );
+	total = total + sum( currNode.getRight() );
+		return total;
+	    }	
+	}
 
 
     //overridden toString
@@ -337,6 +348,7 @@ public class BST {
 	    "     num leaves: " + numLeaves() 
 	    ;
     }
+
 
 
     //main method for testing
