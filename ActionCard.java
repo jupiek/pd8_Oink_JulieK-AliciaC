@@ -19,14 +19,12 @@ public class ActionCard extends Card {
 	if( name .equals("Sly Deal")) {
 	    return "Steal a property from the player of your choice (cannot be part of a full set)";
 	}
-	else if (name.equals("Rent")){
-	    return "All players pay you rent for properties you own in one of thse colors.  Color of Rent Card: " + getColor();
-	}
 	else if (name.equals("It's my birthday!")){
 	    return "All players give you $2M as a gift.";
 	}
 	else if (name.equals ("Forced Deal")){
 	    return "Swap any property with another player. (Cannot be part of a full set)";
 	}
+	return "";
     }
 }
