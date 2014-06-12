@@ -66,3 +66,4 @@ LOG
 06/12: Alicia: added RentCard class with color attribute, added a sum method to BST, added onto getDesciption() for ActionCard class, began a pay(Player p, int debt) still needs to be complete, 
        Updated useActionCard() in player class
        *Still missing identifier problem in Driver class. Not sure how to fix this
+06/12: Fixed Driver class problem :)))))
