@@ -151,13 +151,15 @@ public class Player{
 
     public void pay(Player p, int debt){
 	System.out.println ("This is your money pile: " + _money.preOrderTrav()); 
-	System.out.println ("Choose the value of a card you would like to use to pay " + p.getName());
+
 	Scanner sc = new Scanner(System.in);
-	while (debt >0){
-	    int sum = 0;
+	int sum = 0;
+	if (debt >0){
 	    sum = _money.sum();//sum of monies
 	    if (sum >= debt){//you have enough money left to pay
 		try {
+		    System.out.println("Money owed: " + debt);
+		    System.out.println ("Choose the value of a card you would like to use to pay " + p.getName());
 		    String choice = sc.nextLine();	 
 		    _money.remove(Integer.parseInt(choice));
 		    debt = debt - Integer.parseInt(choice);
@@ -169,44 +171,35 @@ public class Player{
 	    }
 	    else {//you don't have enough money	
 		System.out.println("You must pay with your properties or a combination of properties and money. These are your properties: " );
-        displayPropertyCards();
+		displayPropertyCards();
 		System.out.println("Choose the set of properties you would like to use a Property card from to pay with");
+		System.out.println("Money Owed: " + debt);
 		try { //removing a property card
 		    String choice = sc.nextLine();
 		    PropertyCard removed =(PropertyCard)_properties.get(Integer.parseInt(choice)).remove(0);
 		    debt = debt - removed.getValue();
 		    sum = _money.sum();
-		    System.out.println("Would you like to paying using a)Property Cards or b)Money Cards");
-		    
-		    String PorM = sc.nextLine();
-		    while ( !(PorM.equals("a")) || !(PorM.equals("b")) ) {
-			System.out.println("You must choose (a) Property Cards or (b) Money Cards. Please enter again.");
-			PorM = sc.nextLine();
-		    }
-		    if (PorM.equals("a")){
-			//use a loop to redo choosing a property
-		    }
-		    else {
-			//use loop to choose property
-		    }
-		    
+		    System.out.println("You now have this much money left to pay: " + debt);
 		}
 		catch (ClassCastException ex){	    
-		    System.out.println("Please enter an integer indicating the index of the  card you would like to remove");
+		    System.out.println("Please enter an integer indicating the index of the card you would like to remove");
 		}
 	    }
+	    pay (p,debt);
+	}
+	else {
+	    System.out.println ( "You no longer owe any more money");
 	}
     }
-    
     
     
     public void useActionCard( ActionCard x, Player p ) {
 	if (x.getName().equals("Sly Deal"))
 	    this.useSlyDeal(p);
 	/*	  if (x.getName().equals("Forced Deal"))
-	  this.useForcedDeal(p);
-	  if (x.getName().equals("It's My Birthday!"))
-	  this.useIBM(p);
+		  this.useForcedDeal(p);
+		  if (x.getName().equals("It's My Birthday!"))
+		  this.useIBM(p);
 	*/
 	
 	else if (x.getName().equals("Rent")) {
