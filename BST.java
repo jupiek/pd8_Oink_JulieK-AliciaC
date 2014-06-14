@@ -262,7 +262,7 @@ public class BST {
     //~~~~~~~~~~~~~v~~TRAVERSALS~~v~~~~~~~~~~~~~~~~~~~~~
     //process root, recurse left, recurse right
     public void preOrderTrav() {
-	preOrderTrav( _root );
+	preOrderTravStr( _root );
     }
     public void preOrderTrav( TreeNode currNode ) {
 	if ( currNode == null )
