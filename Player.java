@@ -23,6 +23,10 @@ public class Player{
 	name = n;
     }	
     
+    public String getName(){
+	return name;
+    }
+
     public void turn(CLList players, RQueue deck){
 	draw2(deck);
 	System.out.println("It is now your turn, you have drawn 2 cards.");
@@ -38,21 +42,21 @@ public class Player{
 		players._head = players._head.getNext();
 		moves = 0;
 		Player temp = (Player)players._head.getCargo();
-		temp.turn();
+		temp.turn(players,deck);
 	    }
 	    else  if (onlyNumbers(choice)){
 		Card activated = _hand.remove(Integer.parseInt(choice)); //removes card
-		if (activated.getType() = "Money"){
-		    _money.add(activated);
+		if (activated.getType() .equals( "Money")){
+		    _money.insert(activated.getValue());
 		    moves = moves -1;
 		}
-		else if (activated.getType = "Action"){
+		else if (activated.getType().equals( "Action")){
 		   boolean  played = false;
-		    while (played ==false){
+		    while (played == false){
 			System.out.println( "Which player would you like to use this action card on?"); 
 			String p = sc.nextLine();
 			if (onlyNumbers(p)){
-			    useActionCard(activated, players.find(Integer.parseInt(p)));//NEEDS FIXING
+			    useActionCard((ActionCard)activated,(Player) players.get(Integer.parseInt(p)));
 			    played = true;
 			    moves = moves -1;
 			}
@@ -64,7 +68,7 @@ public class Player{
 		}
 		
 		else{ //card is property
-		    placeInProperties(activated);
+		    placeInProperties((PropertyCard)activated);
 		    moves = moves -1;
 		}
 	    }
@@ -145,7 +149,7 @@ public class Player{
 
 
     public void pay(Player p, int debt){
-	System.out.println ("This is your money pile: " + _money.preOrderTravStr()); 
+	System.out.println ("This is your money pile: " + _money.preOrderTrav()); 
 	System.out.println ("Choose the value of a card you would like to use to pay " + p.getName());
 	Scanner sc = new Scanner(System.in);
 	while (debt >0){
@@ -164,12 +168,12 @@ public class Player{
 	    }
 	    else {//you don't have enough money	
 		System.out.println("You must pay with your properties or a combination of properties and money. These are your properties: " );
-		System.out.println(displayPropertyCards());
-		System.out.println("Choose a property to pay with");
+        displayPropertyCards();
+		System.out.println("Choose the set of properties you would like to use a Property card from to pay with");
 		try { //removing a property card
-		    String choice = sc.nextLine();	 
-		    _properties.remove(Integer.parseInt(choice));
-		    debt = debt - _properties.getValue(Integer.parseInt(choice));
+		    String choice = sc.nextLine();
+		    PropertyCard removed =(PropertyCard)_properties.get(Integer.parseInt(choice)).remove(0);
+		    debt = debt - removed.getValue();
 		    sum = _money.sum();
 		    System.out.println("Would you like to paying using a)Property Cards or b)Money Cards");
 		    
@@ -205,24 +209,26 @@ public class Player{
 	*/
 	
 	else if (x.getName().equals("Rent")) {
-	  String rentcolor = x.getColor();
-	  //code to make all players pay this player.
+	    RentCard rentcard = (RentCard)x; 
+	    String rentcolor = rentcard.getColor();
+	    //code to make all players pay this player.
 
 	}
     }
 	
 	
     /* ALL ACTION CARD METHODS */
-	public boolean useSlyDeal( Player p ) {
+    public boolean useSlyDeal( Player p ) {
 	boolean stolenYet = false;
 	Scanner sc = new Scanner(System.in);
+	PropertyCard stolen = (PropertyCard)p._properties.get(0).get(0);
 	while (! stolenYet) { 
 	    System.out.println("Which card would you like to steal from " + p.name + "?");
 	    p.displayPropertyCards();
 	    String choice = sc.nextLine();
 	    if (onlyNumbers(choice)){
 		LList temp =  p._properties.get(Integer.parseInt(choice));
-		PropertyCard stolen = (PropertyCard)temp.removeLast();
+		stolen = (PropertyCard)temp.removeLast();
 		stolenYet = true;
 	    }
 	    else {
@@ -231,6 +237,7 @@ public class Player{
 	    }
 	}
 	placeInProperties(stolen);
+	return stolenYet; //should always be true
     }
 
     public boolean onlyNumbers(String str) {
