@@ -262,7 +262,7 @@ public class BST {
     //~~~~~~~~~~~~~v~~TRAVERSALS~~v~~~~~~~~~~~~~~~~~~~~~
     //process root, recurse left, recurse right
     public String preOrderTrav() {
-	preOrderTravStr( _root );
+return 	preOrderTravStr( _root );
     }
     public void preOrderTrav( TreeNode currNode ) {
 	if ( currNode == null )
@@ -326,13 +326,13 @@ public class BST {
     //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
 	
     public int sum(){
-	sum(_root);
+	return	sum(_root);
 	    }
 
     public int sum(TreeNode currNode){
-	int total;
+	int total =0 ;
 	if ( currNode == null )
-	    return;
+	    return 0;
 	total = total + currNode.getValue() ;
 	total =total + sum( currNode.getLeft() );
 	total = total + sum( currNode.getRight() );

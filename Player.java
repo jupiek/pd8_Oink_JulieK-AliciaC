@@ -41,7 +41,8 @@ public class Player{
 		System.out.println("Next Player's Turn");
 		players._head = players._head.getNext();
 		moves = 0;
-		Player temp = (Player)players._head.getCargo();
+		DLLNode a =(DLLNode) players._head;
+		Player temp = (Player)a.getCargo();
 		temp.turn(players,deck);
 	    }
 	    else  if (onlyNumbers(choice)){

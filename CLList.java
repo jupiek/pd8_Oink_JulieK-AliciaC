@@ -44,7 +44,7 @@ public class CLList<T> {
 	for( int i = 0; i < index % size(); i++ )
 	    tmp = tmp.getNext();
 
-	return tmp.getValue();
+	return tmp.getCargo();
     }
 
 
@@ -56,7 +56,7 @@ public class CLList<T> {
 	for( int i = 0; i < index % size(); i++ )
 	    tmp = tmp.getNext();
 
-	foo = tmp.setValue( newVal );
+	foo = tmp.setCargo( newVal );
 	
 	return foo;
     }
@@ -66,7 +66,7 @@ public class CLList<T> {
 	String foo = "HEAD-> ";
 	DLLNode<T> tmp = _head;
 	for( int i = 0; i < _size; i++ ) {
-	    foo += tmp.getValue() + " <-> ";
+	    foo += tmp.getCargo() + " <-> ";
 	    tmp = tmp.getNext();
 	}
 	if ( foo.length() > 7 )
