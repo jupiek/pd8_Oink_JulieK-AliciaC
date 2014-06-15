@@ -7,27 +7,23 @@ public class Player{
     BST _money;
     String name;
 
-    public Player(){
+    public Player() {
 	_hand = new ArrayList<Card>();
-	LList<PropertyCard> temp = new LList<PropertyCard>();
-	_properties = new ArrayList<LList>();
-	_properties.add(temp);
+	_properties = new ArrayList<LList>(5);
 	_money = new BST();
     }	
 
     public Player( String n ) {
 	_hand = new ArrayList<Card>();
-	LList<PropertyCard> temp = new LList<PropertyCard>();
-	_properties = new ArrayList<LList>();
-	_properties.add(temp);
+	_properties = new ArrayList<LList>(5);
 	name = n;
     }	
     
-    public String getName(){
+    public String getName() {
 	return name;
     }
 
-    public void turn(CLList players, ALStack deck){
+    public void turn( CLList players, ALStack deck ) {
 	draw(deck);
 	draw(deck);
 	System.out.println("\nIt is now your turn, " + getName() + ". You have drawn 2 cards.");
@@ -77,8 +73,8 @@ public class Player{
 	    }
 	 
 		
-		else {
-		    System.out.println("Please enter an integer indicating which card you would like to play");
+	    else {
+		System.out.println("Please enter an integer indicating which card you would like to play");
 	    }
 	}
     }
@@ -117,30 +113,19 @@ public class Player{
     
     
     public void placeInProperties( PropertyCard c ) { // place new property card in correct place in _properties
-	boolean alreadyHasColor = false;
-	if (_properties.isEmpty()){
-	    LList t = new LList<PropertyCard> ();
-	    t.add(c);
-	    _properties.add(t);
-	}
-	else {
-	    for (int i =0; i< _properties.size()&&!alreadyHasColor; i++){
-		LList prop = (LList) _properties.get(i);
-		PropertyCard temp = (PropertyCard)prop.get(0);
-		String color = temp.getColor();
-		if (c.getColor().equals(color)){  //if color or property already exists in the AL
-		    _properties.get(i).add(c);
-		    alreadyHasColor = true;
-		}
-	    }
-	    if (!alreadyHasColor){
-		LList addition = new LList<PropertyCard>();
-		addition.add(c);
-		_properties.add(addition);
-	    }
-	}	
+	String color = c.getColor();
+	if ( color == "Red" )
+	    _properties.get(0).add(c);
+	else if ( color == "Yellow" )
+	    _properties.get(1).add(c);
+	else if (color == "Orange")
+	    _properties.get(2).add(c);
+	else if (color == "Green")
+	    _properties.get(3).add(c);
+	else if (color == "Pink")
+	    _properties.get(4).add(c);
     }
-	    
+    
 
     public void draw( ALStack deck ) {
 	_hand.add((Card)deck.pop());
@@ -165,7 +150,7 @@ public class Player{
     }
 
 
-    public void pay(Player p, int debt){
+    public void pay( Player p, int debt ) {
 	System.out.println ("This is your money pile: " + _money.preOrderTrav()); 
 
 	Scanner sc = new Scanner(System.in);
@@ -219,10 +204,13 @@ public class Player{
 	*/
 	
 	else if (x.getName().equals("Rent")) {
+	    
 	    RentCard rentcard = (RentCard)x; 
 	    String rentcolor = rentcard.getColor();
-	    useRentCard(rentcolor,players);
-
+	    useRentCard( rentcolor, players ); 
+	    //#$%(#*(%*#$%(#$%
+	    //WHERE IS PLAYERS COMING FROM
+	    
 	}
     }
 	
@@ -250,34 +238,41 @@ public class Player{
 	return stolenYet; //should always be true
     }
 
-    public boolean useRentCard(Strint col,CLList players){
-	if ( _properties.get(i).size() == 0){
+    public boolean useRentCard( String col, CLList players ) {
+	
+	int i = 0;
+	if ( col.equals("Yellow") )
+	    i = 1;
+	else if ( col.equals("Orange") )
+	    i = 2;
+	else if ( col.equals("Green") )
+	    i = 3;
+	else if ( col.equals("Pink") )
+	    i = 4;
+
+	if ( _properties.get(i).size() == 0) {
 	    System.out.println("You may not use this card. You do not have any properties with this color");
-	    return false;}
+	    return false;
+	}
+	
 	else {
-	    LList props = _properties.get(i);
-	    for (int i = 0;i < _properties.get(i).size(); i++){
-		if ( col.equals(_properties.get(i).get(0).getColor()){
-			props = _properties.get(i);
-			int count = props.size();
-			int rent = props.getRent(count + 1);
-			//make all the players pay in CLLIst
-			return true;
-		    
-		    }
-		    }
-	    }
+	    LList<PropertyCard> props = _properties.get(i);
+	    int rent = props.get(0).getRent(props.size() + 1);
+	    //make all the players pay in CLLIst
+	    return true;
 	}
     }
-    public boolean onlyNumbers(String str) {
-	    if (str == null || str.length() == 0)
-		return false;
-			for (int i = 0; i < str.length(); i++) {
+    
+    
+    public boolean onlyNumbers( String str ) {
+	if (str == null || str.length() == 0)
+	    return false;
+	for (int i = 0; i < str.length(); i++) {
             if (!Character.isDigit(str.charAt(i)))
                 return false;
         }   
         return true;
     }
 }
-    
+
 
