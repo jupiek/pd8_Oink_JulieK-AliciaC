@@ -37,14 +37,26 @@ public class Driver {
 	}
 	
 	CLList<Player> players = new CLList<Player>();
-	Player P1 = new Player("Me");
+	System.out.println("Hello! Welcome to the land of Monopoly Deal! Here are some rules to help you get started The objective of Monopoly Deal is to be the first player to complete 3 full property sets on the playing field. A set is 3 properties that have the same color. There are 3 places where cards can be played during a turn: \n1. A player can place money cards or action cards in their bank.\n2. A player can play property cards in their property section.\n3. A player can play action cards to use them.\n\nLet's get started. What is your name?");
+	Scanner sc = new Scanner(System.in);
+	String n = sc.nextLine();
+	Player P1 = new Player(n);
 	Player P2 = new Player("Julie");
-        Player P3 = new Player("Alicia");
-        Player P4 = new Player("Potato");
+	Player P3 = new Player("Alicia");
+	Player P4 = new Player("Potato");
 	players.add(P1);
 	players.add(P2);
 	players.add(P3);
 	players.add(P4);
+	System.out.println("GAME STARTS NOW. EVERYONE DRAWS 5 CARDS.");
+
+	for (int i = 0; i <5; i++){
+	    P1.draw(deck);
+	    P2.draw(deck);
+	    P3.draw(deck);
+	    P4.draw(deck);
+	}
+
 	P1.turn(players, deck);
 	
     }
