@@ -29,13 +29,13 @@ public class Player{
 
     public void turn(CLList players, ALStack deck){
 	draw2(deck);
-	System.out.println("It is now your turn, you have drawn 2 cards.");
+	System.out.println("It is now your turn, " + getName() + ". You have drawn 2 cards.");
 	Scanner sc = new Scanner(System.in);
 	int moves = 3;
 	while (moves >0){
 	    System.out.println("Hand:");
 	    display(_hand);
-	    System.out.println("You have " + moves + "moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
+	    System.out.println("You have " + moves + " moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
 	    String choice = sc.nextLine();
 	    if (choice.equals ("pass")){
 		System.out.println("Next Player's Turn");
@@ -90,7 +90,7 @@ public class Player{
 	    String retStr = "";
 	    retStr+= "Card " + i + ": ";
 	    Card c = cards.get(i);
-	    retStr += "[TYPE: " +  c.getType()+ " NAME: " + c.getName() + " DESCRIPTION: " + c.getDescription() + "]";
+	    retStr += "\n [TYPE: " +  c.getType()+ "\n NAME: " + c.getName() + "\n DESCRIPTION: " + c.getDescription() + "]";
 	    System.out.println( retStr );
         }			
     }

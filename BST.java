@@ -326,11 +326,11 @@ return 	preOrderTravStr( _root );
     //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
 	
     public int sum(){
-	return	sum(_root);
+	return sum(_root);
 	    }
 
     public int sum(TreeNode currNode){
-	int total =0 ;
+	int total = 0;
 	if ( currNode == null )
 	    return 0;
 	total = total + currNode.getValue() ;
