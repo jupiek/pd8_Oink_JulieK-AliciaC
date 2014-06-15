@@ -54,9 +54,17 @@ public class Player{
 			System.out.println( "Which player would you like to use this action card on?"); 
 			String p = sc.nextLine();
 			if (onlyNumbers(p)){
-			    useActionCard((ActionCard)activated,(Player) players.get(Integer.parseInt(p)));
-			    played = true;
-			    moves = moves -1;
+			    if (activated.getName().equals("Rent")){
+				RentCard rentcard = (RentCard)activated; 
+				String rentcolor = rentcard.getColor();
+				useRentCard( rentcolor, players ); 
+			    }
+			    else {
+				
+				useActionCard((ActionCard)activated,(Player) players.get(Integer.parseInt(p)));
+				played = true;
+				moves = moves -1;
+			    }
 			}
 			else {
 			    System.out.println("Please enter an integer indicating which player you would like to use this card on");
@@ -202,16 +210,7 @@ public class Player{
 		  if (x.getName().equals("It's My Birthday!"))
 		  this.useIBM(p);
 	*/
-	
-	else if (x.getName().equals("Rent")) {
-	    
-	    RentCard rentcard = (RentCard)x; 
-	    String rentcolor = rentcard.getColor();
-	    useRentCard( rentcolor, players ); 
-	    //#$%(#*(%*#$%(#$%
-	    //WHERE IS PLAYERS COMING FROM
-	    
-	}
+       
     }
 	
 	
