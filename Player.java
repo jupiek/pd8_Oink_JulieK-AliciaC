@@ -90,7 +90,7 @@ public class Player{
 	    String retStr = "";
 	    retStr+= "Card " + i + ": ";
 	    Card c = cards.get(i);
-	    retStr += "[TYPE: " +  c.getType()+ "NAME: " + c.getName() + "DESCRIPTION: " + c.getDescription() + "]";
+	    retStr += "[TYPE: " +  c.getType()+ " NAME: " + c.getName() + " DESCRIPTION: " + c.getDescription() + "]";
 	    System.out.println( retStr );
         }			
     }
