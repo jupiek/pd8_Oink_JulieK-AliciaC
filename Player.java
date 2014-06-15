@@ -27,7 +27,7 @@ public class Player{
 	return name;
     }
 
-    public void turn(CLList players, RQueue deck){
+    public void turn(CLList players, ALStack deck){
 	draw2(deck);
 	System.out.println("It is now your turn, you have drawn 2 cards.");
 	Scanner sc = new Scanner(System.in);
@@ -52,7 +52,7 @@ public class Player{
 		    moves = moves -1;
 		}
 		else if (activated.getType().equals( "Action")){
-		   boolean  played = false;
+		    boolean  played = false;
 		    while (played == false){
 			System.out.println( "Which player would you like to use this action card on?"); 
 			String p = sc.nextLine();
@@ -125,9 +125,9 @@ public class Player{
     }
 	    
 
-    public void draw2( RQueue deck ) {
-	_hand.add((Card)deck.dequeue());
-	_hand.add((Card)deck.dequeue());
+    public void draw2( ALStack deck ) {
+	_hand.add((Card)deck.pop());
+	_hand.add((Card)deck.pop());
     }
 
 
