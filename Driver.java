@@ -4,8 +4,9 @@ import java.io.*;
 public class Driver {
 
     public static void main( String[] args ) {
-
 	ArrayList<Card> cards = new ArrayList<Card>();
+	for (int count = 0; count <2; count++) {
+
 	cards.add( new PropertyCard("Pennsylvania Avenue", "Green"));
 	cards.add( new PropertyCard("North Carolina Avenue", "Green"));
 	cards.add( new PropertyCard("Pacific Avenue","Green"));
@@ -28,7 +29,7 @@ public class Driver {
 	cards.add(new RentCard("Pink"));
 	cards.add(new RentCard("Orange"));
 	cards.add(new RentCard("Red"));
-	cards.add(new RentCard("Green"));
+	cards.add(new RentCard("Green"));}
 	
 	ALStack<Card> deck = new ALStack<Card>();
 	for (int i = 0; i < cards.size(); i++) {
