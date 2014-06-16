@@ -69,13 +69,18 @@ public class Player {
 			    useRentCard( rentcolor, players ); 
 			    played = true;
 			}
+			if (activated.getName().equals("It's my Birthday!")){
+			    this.useIMB(players); 
+			}
 			else {
 			    System.out.println( "Which player would you like to use this action card on?"); 
 			    String p = sc.nextLine();
 			    for (int k =0; k < players.size(); k++){
 				Player target = (Player)players.get(k);
 				if (target.getName().equals(p)){
+				    System.out.println("before useaction");
 				    useActionCard((ActionCard)activated,(Player) players.get(k));
+				    System.out.println("after useaction");
 				    played = true;
 				    moves = moves -1;
 				}
@@ -99,7 +104,6 @@ public class Player {
 	if (moves ==0){
 	    System.out.println("Turn completed. Next players turn");
 	    players._head = players._head.getNext();
-	    moves = 0;
 	    DLLNode a =(DLLNode) players._head;
 	    Player temp = (Player)a.getCargo();
 	    temp.turn(players,deck);
@@ -187,8 +191,7 @@ public class Player {
 
 
     public void pay( Player p, int debt ) {
-	System.out.println ("This is your money pile: " + _money.preOrderTrav()); 
-
+	System.out.println ("This is your bank: " + _money.preOrderTrav()); 
 	Scanner sc = new Scanner(System.in);
 	int sum = 0;
 	if (debt >0){
@@ -236,9 +239,7 @@ public class Player {
 	if (x.getName().equals("Sly Deal"))
 	    this.useSlyDeal(p);
 	/*	  if (x.getName().equals("Forced Deal"))
-		  this.useForcedDeal(p);
-		  if (x.getName().equals("It's My Birthday!"))
-		  this.useIBM(p);
+		  this.useForcedDeal(p);	 
 	*/
        
     }
@@ -294,12 +295,30 @@ public class Player {
 	else {
 	    LList<PropertyCard> props = _properties.get(i);
 	    int rent = props.get(0).getRent(props.size() + 1);
-	    //make all the players pay in CLLIst
+
+	    for (int j = 0; j <players.size(); j++){
+		Player playa = (Player)players.get(j);
+		if (!getName().equals(playa.getName())){
+		   playa.pay(this,rent);
+		}
+	    }
+	    
 	    return true;
 	}
     }
     
-    
+    public boolean useIMB(CLList players){
+	System.out.println("You played It's my Birthday Card");
+	for (int i = 0; i <players.size(); i++){
+	    Player playa = (Player)players.get(i);
+	    if (!getName().equals(playa.getName())){
+		playa.pay(this,2);
+		System.out.println(playa.getName() + "has just payed you.");
+	    }
+	} 
+	return true;
+    }
+
     public boolean onlyNumbers( String str ) {
 	if (str == null || str.length() == 0)
 	    return false;
