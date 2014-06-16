@@ -17,6 +17,12 @@ public class Player {
     public Player( String n ) {
 	_hand = new ArrayList<Card>();
 	_properties = new ArrayList<LList>(5);
+	_properties.add( new LList<PropertyCard>()); 
+	_properties.add( new LList<PropertyCard>()); 
+	_properties.add( new LList<PropertyCard>()); 
+	_properties.add( new LList<PropertyCard>()); 
+	_properties.add( new LList<PropertyCard>()); 
+
 	name = n;
     }	
     
@@ -47,7 +53,8 @@ public class Player {
 		Player temp = (Player)a.getCargo();
 		temp.turn(players,deck);
 	    }
-	    else if (onlyNumbers(choice)){
+	    else if (onlyNumbers(choice) && (Integer.parseInt(choice))-1 < _hand.size()){
+	
 		Card activated = _hand.remove(Integer.parseInt(choice) - 1); //removes card
 		if (activated.getType() .equals( "Money")){
 		    _money.insert(activated.getValue());
@@ -81,6 +88,7 @@ public class Player {
 		else{ //card is property
 		    PropertyCard c = (PropertyCard) activated;
 		    this.placeInProperties(c);
+	
 		    moves = moves -1;
 		}
 	    }
@@ -134,21 +142,24 @@ public class Player {
     
     public void placeInProperties( PropertyCard c ) { // place new property card in correct place in _properties
 	String color = c.getColor();
-	if ( color == "Red" )
+	if ( color.equals("Red") )
 	    _properties.get(0).add(c);
-	else if ( color == "Yellow" )
+	else if ( color.equals("Yellow" ))
 	    _properties.get(1).add(c);
-	else if (color == "Orange")
+	else if (color.equals( "Orange"))
 	    _properties.get(2).add(c);
-	else if (color == "Green")
+	else if (color.equals( "Green"))
 	    _properties.get(3).add(c);
-	else if (color == "Pink")
+	else if (color.equals("Pink"))
 	    _properties.get(4).add(c);
+	else {
+	    _properties.get(5).add(c);
+	}
     }
     
 
-    public void draw( ALStack deck ) {
-	_hand.add((Card)deck.pop());
+	public void draw( ALStack deck ) {
+	    _hand.add((Card)deck.pop());
     }
 
 
