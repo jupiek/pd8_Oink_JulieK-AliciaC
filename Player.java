@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.io.*;
 
@@ -57,8 +58,11 @@ public class Player {
 	
 		Card activated = _hand.remove(Integer.parseInt(choice) - 1); //removes card
 		if (activated.getType() .equals( "Money")){
-		    _money.insert(activated.getValue());
-		    moves = moves -1;
+		    try {
+			moves--;
+			_money.insert(activated.getValue());
+		    }
+		    catch( NullPointerException e ) {}
 		}
 		else if (activated.getType().equals( "Action")){
 		    boolean played = false;
@@ -306,7 +310,7 @@ public class Player {
 	    for (int j = 0; j <players.size(); j++){
 		Player playa = (Player)players.get(j);
 		if (!getName().equals(playa.getName())){
-		   playa.pay(this,rent);
+		    playa.pay(this,rent);
 		}
 	    }
 	    
@@ -336,5 +340,4 @@ public class Player {
         return true;
     }
 }
-
 
