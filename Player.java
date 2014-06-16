@@ -29,7 +29,6 @@ public class Player{
 	System.out.println("\nIt is now your turn, " + getName() + ". You have drawn 2 cards.");
 	Scanner sc = new Scanner(System.in);
 	int moves = 3;
-<<<<<<< HEAD
 	while (moves >0){
 	    if (_hand.size()==0)
 	        {
@@ -45,30 +44,9 @@ public class Player{
 		    DLLNode a =(DLLNode) players._head;
 		    Player temp = (Player)a.getCargo();
 		    temp.turn(players,deck);
-=======
-	while (moves > 0) {
-	    if (_hand.size() == 0)
-		break;
-	    System.out.println("Hand:");
-	    display(_hand);
-	    System.out.println("\nYou have " + moves + " moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
-	    String choice = sc.nextLine();
-	    if (choice.equals ("pass")){
-		System.out.println("Next Player's Turn");
-		players._head = players._head.getNext();
-		moves = 0;
-		DLLNode a =(DLLNode) players._head;
-		Player temp = (Player)a.getCargo();
-		temp.turn(players,deck);
-	    }
-	    else if (onlyNumbers(choice)){
-		Card activated = _hand.remove(Integer.parseInt(choice)); //removes card
-		if (activated.getType() .equals( "Money")){
-		    _money.insert(activated.getValue());
-		    moves = moves -1;
->>>>>>> 1d6624b5db754bc5fa3d9866d4a539a11bd0d36f
 		}
-	    else{
+	    else {
+
 		System.out.println("Hand:");
 		display(_hand);
 		System.out.println("\nYou have " + moves + " moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
@@ -124,16 +102,16 @@ public class Player{
 		    System.out.println("Please enter an integer indicating which card you would like to play");
 		}
 	    }
-		
 	}
+		
     }
 
-	    
+
+
 	    
 	
 
     public void display( ArrayList<Card> cards ) { //display method for not _properties ArrayLists
-<<<<<<< HEAD
 	if (cards.size() == 0){
 	    System.out.println("No cards");
 	}
@@ -148,20 +126,11 @@ public class Player{
 		retStr += c.getDescription() + "]";
 		System.out.println( retStr );
 	    }
-	}			
-=======
-	for (int i = 0; i < cards.size(); i++) {
-	    String retStr = "";
-	    retStr+= "Card " + i + ": ";
-	    Card c = cards.get(i);
-	    retStr += "\n\t TYPE: " +  c.getType()+ "\n\t NAME: " + c.getName() + "\n\t DESCRIPTION: " + c.getDescription();
-	    System.out.println( retStr );
-        }			
->>>>>>> 1d6624b5db754bc5fa3d9866d4a539a11bd0d36f
+	}
     }
     
     public void displayPropertyCards() {
-    	for (int i = 0; i < _properties.size(); i++) {
+	for (int i = 0; i < _properties.size(); i++) {
 	    String retStr = "Property Set " + i +":";
 	    if (!(_properties.get(i).size()==0)){
 		for (int j = 0; j<_properties.get(i).size(); j++){
