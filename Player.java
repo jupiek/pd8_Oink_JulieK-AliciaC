@@ -61,42 +61,48 @@ public class Player {
 		    moves = moves -1;
 		}
 		else if (activated.getType().equals( "Action")){
-		    boolean  played = false;
+		    boolean played = false;
 		    while (played == false){
-			System.out.println( "Which player would you like to use this action card on?"); 
-			String p = sc.nextLine();
-			if (onlyNumbers(p)){
-			    if (activated.getName().equals("Rent")){
-				RentCard rentcard = (RentCard)activated; 
-				String rentcolor = rentcard.getColor();
-				useRentCard( rentcolor, players ); 
-			    }
-			    else {
-				
-				useActionCard((ActionCard)activated,(Player) players.get(Integer.parseInt(p)));
-				played = true;
-				moves = moves -1;
-			    }
+			if (activated.getName().equals("Rent")){
+			    RentCard rentcard = (RentCard)activated; 
+			    String rentcolor = rentcard.getColor();
+			    useRentCard( rentcolor, players ); 
+			    played = true;
 			}
 			else {
-			    System.out.println("Please enter an integer indicating which player you would like to use this card on");
-			}
-		    }
-			   
-		}
-		
+			    System.out.println( "Which player would you like to use this action card on?"); 
+			    String p = sc.nextLine();
+			    for (int k =0; k < players.size(); k++){
+				Player target = (Player)players.get(k);
+				if (target.getName().equals(p)){
+				    useActionCard((ActionCard)activated,(Player) players.get(k));
+				    played = true;
+				    moves = moves -1;
+				}
+			    }
+			    if ( played == false){
+				System.out.println("Please enter the name indicating which player you would like to use this card on");
+			    }
+			}  
+		    }	
+		}	   	
 		else{ //card is property
 		    PropertyCard c = (PropertyCard) activated;
 		    this.placeInProperties(c);
-	
 		    moves = moves -1;
 		}
-	    }
-	 
-		
+	    }	
 	    else {
 		System.out.println("Please enter an integer indicating which card you would like to play");
 	    }
+	}
+	if (moves ==0){
+	    System.out.println("Turn completed. Next players turn");
+	    players._head = players._head.getNext();
+	    moves = 0;
+	    DLLNode a =(DLLNode) players._head;
+	    Player temp = (Player)a.getCargo();
+	    temp.turn(players,deck);
 	}
     }
 
@@ -157,9 +163,8 @@ public class Player {
 	}
     }
     
-
-	public void draw( ALStack deck ) {
-	    _hand.add((Card)deck.pop());
+    public void draw( ALStack deck ) {
+	_hand.add((Card)deck.pop());
     }
 
 
@@ -196,6 +201,7 @@ public class Player {
 		    _money.remove(Integer.parseInt(choice));
 		    debt = debt - Integer.parseInt(choice);
 		    sum = _money.sum();
+		    this._money.insert(Integer.parseInt(choice));
 		}
 		catch (ClassCastException ex){	    
 		    System.out.println("Please enter an integer indicating the value of the  card you would like to remove");
@@ -209,6 +215,7 @@ public class Player {
 		try { //removing a property card
 		    String choice = sc.nextLine();
 		    PropertyCard removed =(PropertyCard)_properties.get(Integer.parseInt(choice)).remove(0);
+		    this.placeInProperties(removed);
 		    debt = debt - removed.getValue();
 		    sum = _money.sum();
 		    System.out.println("You now have this much money left to pay: " + debt);
