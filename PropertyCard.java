@@ -51,7 +51,7 @@ public class PropertyCard extends Card {
     }
 
     public String getDescription() {
-	return "\n  Rent for 1: " + rent1 + "\n" + "  Rent for 2: " + rent2 + "\n" + "  Rent for 3: " + rent3;
+	return "\n\t\tRent for 1: " + rent1 + "\n\t\t" + "Rent for 2: " + rent2 + "\n\t\t" + "Rent for 3: " + rent3;
     }
 
     public String getColor() {
