@@ -24,6 +24,8 @@ public class Player {
 	return name;
     }
 
+    public ArrayList<LList> getProperties() { return _properties; }
+
     public void turn( CLList players, ALStack deck ) {
 	draw(deck);
 	draw(deck);
@@ -228,7 +230,14 @@ public class Player {
     public boolean useSlyDeal( Player p ) {
 	boolean stolenYet = false;
 	Scanner sc = new Scanner(System.in);
-	PropertyCard stolen = (PropertyCard)p._properties.get(0).get(0);
+	int i = 0;
+	while (i < 5) {
+	    if (! (p.getProperties().get(i) == null) )
+		break;
+	    else
+		i++;
+	}
+	PropertyCard stolen = (PropertyCard) p.getProperties().get(i).get(0);
 	while (! stolenYet) { 
 	    System.out.println("Which card would you like to steal from " + p.name + "?");
 	    p.displayPropertyCards();
