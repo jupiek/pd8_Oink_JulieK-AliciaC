@@ -35,7 +35,7 @@ public class Player {
 		return;
 	    System.out.println("Hand:");
 	    display(_hand);
-	    System.out.println("\nYou have " + moves + " moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
+	    System.out.println("\nYou have " + moves + " moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the number of the card you wish to play.");
 	    String choice = sc.nextLine();
 	    if (choice.equals ("pass")){
 		System.out.println("Next Player's Turn");
@@ -46,7 +46,7 @@ public class Player {
 		temp.turn(players,deck);
 	    }
 	    else if (onlyNumbers(choice)){
-		Card activated = _hand.remove(Integer.parseInt(choice)); //removes card
+		Card activated = _hand.remove(Integer.parseInt(choice) - 1); //removes card
 		if (activated.getType() .equals( "Money")){
 		    _money.insert(activated.getValue());
 		    moves = moves -1;
@@ -95,7 +95,8 @@ public class Player {
     public void display( ArrayList<Card> cards ) { //display method for not _properties ArrayLists
 	for (int i = 0; i < cards.size(); i++) {
 	    String retStr = "";
-	    retStr+= "Card " + i + ": ";
+	    int b = i+1;
+	    retStr+= "Card " + b + ": ";
 	    Card c = cards.get(i);
 	    if ( c instanceof ActionCard ) {
 		ActionCard a = (ActionCard) c;
@@ -111,7 +112,8 @@ public class Player {
     
     public void displayPropertyCards() {
     	for (int i = 0; i < _properties.size(); i++) {
-	    String retStr = "Property Set " + i +":";
+	    int b = i=1;
+	    String retStr = "Property Set " + b +":";
 	    if (!(_properties.get(i).size()==0)){
 		for (int j = 0; j<_properties.get(i).size(); j++){
 		    LList<PropertyCard> l = _properties.get(i);
