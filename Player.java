@@ -126,6 +126,13 @@ public class Player {
 		PropertyCard p = (PropertyCard) c;
 		retStr += "\n\t TYPE: " +  p.getType()+ "\n\t NAME: " + p.getName() + "\n\t DESCRIPTION: " + p.getDescription(); 
 	    }
+	    else {
+		try{
+		    int value = c.getValue();
+		    retStr += "\n\t TYPE: Money \n\t Value: " + value + " Million Dollars";
+		}
+		catch (NullPointerException e) {}
+	    } 
 	    System.out.println( retStr );
         }			
     }
