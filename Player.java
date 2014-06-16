@@ -29,7 +29,9 @@ public class Player{
 	System.out.println("\nIt is now your turn, " + getName() + ". You have drawn 2 cards.");
 	Scanner sc = new Scanner(System.in);
 	int moves = 3;
-	while (moves >0){
+	while (moves > 0) {
+	    if (_hand.size() == 0)
+		break;
 	    System.out.println("Hand:");
 	    display(_hand);
 	    System.out.println("\nYou have " + moves + " moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
@@ -96,7 +98,7 @@ public class Player{
 	    String retStr = "";
 	    retStr+= "Card " + i + ": ";
 	    Card c = cards.get(i);
-	    retStr += "\n [TYPE: " +  c.getType()+ "\n NAME: " + c.getName() + "\n DESCRIPTION: " + c.getDescription() + "]";
+	    retStr += "\n\t TYPE: " +  c.getType()+ "\n\t NAME: " + c.getName() + "\n\t DESCRIPTION: " + c.getDescription();
 	    System.out.println( retStr );
         }			
     }
