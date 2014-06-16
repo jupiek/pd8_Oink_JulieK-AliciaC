@@ -30,60 +30,78 @@ public class Player{
 	Scanner sc = new Scanner(System.in);
 	int moves = 3;
 	while (moves >0){
-	    System.out.println("Hand:");
-	    display(_hand);
-	    System.out.println("\nYou have " + moves + " moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
-	    String choice = sc.nextLine();
-	    if (choice.equals ("pass")){
-		System.out.println("Next Player's Turn");
-		players._head = players._head.getNext();
-		moves = 0;
-		DLLNode a =(DLLNode) players._head;
-		Player temp = (Player)a.getCargo();
-		temp.turn(players,deck);
-	    }
-	    else if (onlyNumbers(choice)){
-		Card activated = _hand.remove(Integer.parseInt(choice)); //removes card
-		if (activated.getType() .equals( "Money")){
-		    _money.insert(activated.getValue());
-		    moves = moves -1;
+	    if (_hand.size()==0)
+	        {
+		    System.out.println("No more cards. Draw 5");
+		    draw(deck);
+		    draw(deck);
+		    draw(deck);
+		    draw(deck);
+		    draw(deck);
+		    System.out.println("Next Player's Turn");
+		    players._head = players._head.getNext();
+		    moves = 0;
+		    DLLNode a =(DLLNode) players._head;
+		    Player temp = (Player)a.getCargo();
+		    temp.turn(players,deck);
 		}
-		else if (activated.getType().equals( "Action")){
-		    boolean  played = false;
-		    while (played == false){
-			System.out.println( "Which player would you like to use this action card on?"); 
-			String p = sc.nextLine();
-			if (onlyNumbers(p)){
-			    if (activated.getName().equals("Rent")){
-				RentCard rentcard = (RentCard)activated; 
-				String rentcolor = rentcard.getColor();
-				useRentCard( rentcolor, players ); 
+	    else{
+		System.out.println("Hand:");
+		display(_hand);
+		System.out.println("\nYou have " + moves + " moves left to make. If you wish to end your turn, enter 'pass'. If not, then select the index of the card you wish to play.");
+		String choice = sc.nextLine();
+		if (choice.equals ("pass")){
+		    System.out.println("Next Player's Turn");
+		    players._head = players._head.getNext();
+		    moves = 0;
+		    DLLNode a =(DLLNode) players._head;
+		    Player temp = (Player)a.getCargo();
+		    temp.turn(players,deck);
+		}
+		else if (onlyNumbers(choice)){
+		    Card activated = _hand.remove(Integer.parseInt(choice)); //removes card
+		    if (activated.getType() .equals( "Money")){
+			_money.insert(activated.getValue());
+			moves = moves -1;
+		    }
+		    else if (activated.getType().equals( "Action")){
+			boolean  played = false;
+			while (played == false){
+			    System.out.println( "Which player would you like to use this action card on?"); 
+			    String p = sc.nextLine();
+			    if (onlyNumbers(p)){
+				if (activated.getName().equals("Rent")){
+				    RentCard rentcard = (RentCard)activated; 
+				    String rentcolor = rentcard.getColor();
+				    useRentCard( rentcolor, players ); 
+				}
+				else {
+				
+				    useActionCard((ActionCard)activated,(Player) players.get(Integer.parseInt(p)));
+				    played = true;
+				    moves = moves -1;
+				}
 			    }
 			    else {
-				
-				useActionCard((ActionCard)activated,(Player) players.get(Integer.parseInt(p)));
-				played = true;
-				moves = moves -1;
+				System.out.println("Please enter an integer indicating which player you would like to use this card on");
 			    }
 			}
-			else {
-			    System.out.println("Please enter an integer indicating which player you would like to use this card on");
-			}
-		    }
 			   
-		}
+		    }
 		
-		else{ //card is property
-		    PropertyCard c = (PropertyCard) activated;
-		    this.placeInProperties(c);
-		    moves = moves -1;
+		    else{ //card is property
+			PropertyCard c = (PropertyCard) activated;
+			this.placeInProperties(c);
+			moves = moves -1;
+		    }
 		}
-	    }
 	 
 		
-	    else {
-		System.out.println("Please enter an integer indicating which card you would like to play");
+		else {
+		    System.out.println("Please enter an integer indicating which card you would like to play");
+		}
 	    }
+		
 	}
     }
 
@@ -92,13 +110,21 @@ public class Player{
 	
 
     public void display( ArrayList<Card> cards ) { //display method for not _properties ArrayLists
-	for (int i = 0; i < cards.size(); i++) {
-	    String retStr = "";
-	    retStr+= "Card " + i + ": ";
-	    Card c = cards.get(i);
-	    retStr += "\n [TYPE: " +  c.getType()+ "\n NAME: " + c.getName() + "\n DESCRIPTION: " + c.getDescription() + "]";
-	    System.out.println( retStr );
-        }			
+	if (cards.size() == 0){
+	    System.out.println("No cards");
+	}
+	else{
+	    for (int i = 0; i < cards.size(); i++) {
+		String retStr = "";
+		retStr+= "Card " + i + ": ";
+		Card c = cards.get(i);
+		retStr += "\n [TYPE: " +  c.getType();
+		retStr += "\n NAME: " + c.getName();
+		retStr += "\n DESCRIPTION: " ;
+		retStr += c.getDescription() + "]";
+		System.out.println( retStr );
+	    }
+	}			
     }
     
     public void displayPropertyCards() {
@@ -248,7 +274,8 @@ public class Player{
 	    i = 3;
 	else if ( col.equals("Pink") )
 	    i = 4;
-
+	else if (col.equals("Red"))
+	    i = 5;
 	if ( _properties.get(i).size() == 0) {
 	    System.out.println("You may not use this card. You do not have any properties with this color");
 	    return false;
@@ -257,7 +284,12 @@ public class Player{
 	else {
 	    LList<PropertyCard> props = _properties.get(i);
 	    int rent = props.get(0).getRent(props.size() + 1);
-	    //make all the players pay in CLLIst
+	    for (int j = 0; i<players.size(); j++){
+		Player p  = (Player)players.get(j);
+		if(! p.getName().equals(getName())){ //if this is not you
+		    p.pay(this, rent);
+		}
+	    }
 	    return true;
 	}
     }
